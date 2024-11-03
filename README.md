@@ -1,219 +1,144 @@
-# DataScience-Models-and-Deployment : Chapter-2 Decision Tree Classification for Prediction of Graduation
+# DataScience-Models-and-Deployment : Chapter-3 Deploying Machine Learning Models with FLASK Web Development
 
-## การทำนายผลนักศึกษาใหม่ระดับปริญญาโท จะสำเร็จการศึกษาภายใน 2 ปี
-
-### 1) โจทย์ปัญหาและที่มา
-- ในแต่ละปีมีนักศึกษาระดับปริญญาโทที่ตกค้าง ไม่สำเร็จการศึกษาภายในกำหนดเวลา 2 ปี เมื่อนักศึกษาตกค้างหรือไม่สำเร็จการศึกษาภายในกำหนดเวลา จะก่อให้เกิดปัญหาตามมา อาทิเช่น ค่าใช้จ่ายของนักศึกษา ภาระงานที่ปรึกษา เป้าหมายของสาขา และมหาวิทยาลัย
-- ดังนั้นเมื่อมีนักศึกษาใหม่ หรือผู้สนใจเข้าไปทำการสมัครเรียนป.โท เข้ามาในระบบ ที่อาศัยหลักการเรียนรู้ของเครื่อง สำหรับวิเคราะห์เชิงทำนายว่านักศึกษาใหม่ จะสำเร็จการศึกษาภายใน 2 ปี หรือไม่ เมื่อระบบดังกล่าวออกมา ทางหลักสูตรสามารถแจ้งข้ออาจารย์ที่ปรึกษา แล้วไปดูแลนักศึกษาเพื่อส่งเสริมให้นักศึกษาสำเร็จการศึกษาภายในกำหนดเวลา 2 ปี
-
-## 2) รายละเอียดข้อมูล
-- BSc = จบการศึกษาปริญญาตรีวิทยาศาสตร์บัณฑิต หรือที่เกี่ยวข้อง (จบตรงกับหลักสูตร) โดย 1 = จบตรง และ 0 คือจบไม่ตรง
-- Gender = เพศ: 0 คือผู้ชาย และ 1 คือผู้หญิง
-- Experience = ประสบการณ์การทำงาน (ปี) โดย 1= 0-2 ปี, 2= 2-5 ปี และ 3 = มากกว่า 5 ปี
-- Province = จังหวัดในประเทศไทย
-- Thesis/IS = ทำวิทยานิพนธ์ (0) หรือค้นคว้าอิสระ (1)
-- English Proficiency Certificate = ผลสอบภาษาอังกฤษ โดยมี = 1 และไม่มี = 0
-- Result = จบการศึกษาในกำหนดเวลา โดย 0 คือจบใน 2 ปี และ 1 คือไม่จบใน 2 ปี
-
-
-
-## 1) Import Libraries
-
+## Create a model file (model.sav)
 ```py
-# การนำเข้า Library ที่สำคัญ
-import pandas as pd  # data processing
-import numpy as np  # linear algebra
-import matplotlib.pyplot as plt  # data visualization
-import seaborn as sns  # statistical data visualization
-import sklearn as sk  # machine learning model
-import sklearn.metrics as metrics
+import sklearn # pip install scikit-learn
+from sklearn.linear_model import LinearRegression
+import joblib
+import pandas as pd
 
+# การอ่านไฟล์ .csv
+dataset = pd.read_csv('/content/sample_data/gradingsystem_training.csv')
+x = dataset.iloc[:, 2].values.reshape(-1, 1)  # ค่าเกรดเฉลี่ยสะสม
+y = dataset.iloc[:, 3].values.reshape(-1, 1)  # ค่าเกรดเฉลี่ยเทอม
+
+# การแบ่งข้อมูล
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.7, test_size=0.3, random_state=0)
+
+# การสร้างแบบจำลองการถดถอยเชิงเส้นอย่างง่าย
+regression_model = LinearRegression()
+regression_model.fit(x_train, y_train)
+
+# บันทึกแบบจำลองที่สร้างแล้ว เก็บไว้ในไฟล์ model.sav
+filename = "model.sav"
+joblib.dump(regression_model, filename)
+newmodel = joblib.load(filename)
+newmodel.predict([[30]])
 ```
 
-## 2) Reas Dataset
+```shell
+array([[2.88205188]])
+```
+
+## Directory Structure
+```shell
+your_project_folder/
+│
+├── app.py                   # Flask application
+├── model.sav                # Serialized model file
+└── templates/
+    └── index.html           # HTML template for the form
+```
+
+## Flask Application Code (app.py)
 ```py
-# การนำไฟล์เข้า
-studentdata = pd.read_csv('/content/sample_data/Generated_Dataset.csv')
-studentdata.head(10)
+from flask import Flask, request, render_template
+import joblib
+
+# Load the trained model
+model = joblib.load("model.sav")
+
+# Initialize the Flask app
+app = Flask(__name__)
+
+# Define the home route to render the HTML form
+@app.route('/')
+def home():
+    return render_template("index.html")
+
+# Define the prediction route to process form input and return a result
+@app.route('/', methods=['POST'])
+def predict():
+    try:
+        # Get the input value from the form
+        math_score = float(request.form['math'])
+        
+        # Predict using the loaded model
+        prediction = model.predict([[math_score]])
+        
+        # Extract the result (assuming it's a 2D array)
+        result = round(prediction[0][0], 2)
+        
+        # Render the result in the template
+        return render_template("index.html", result=result)
+    
+    except Exception as e:
+        # In case of an error, return a message
+        return f"Error occurred: {e}"
+
+# Run the app
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+## HTML Template (templates/index.html)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>การทำนายเกรดของเครื่องประมวลผลวิชาคณิตศาสตร์</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #8bc0f5;
+        }
+        .div2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 30px;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="div2">
+        <h3>การทำนายคะแนนวิชาคณิตศาสตร์ตามแบบทดสอบผลคะแนนสุดท้าย</h3> <br><br>
+        <form action="/" method="POST">
+            <label for="math">กรุณากรอกผลคะแนนคณิตศาสตร์:</label>
+            <input type="text" id="math" name="math" required><br><br>
+            <div class="center">
+                <input type="submit" value="ทำนายผล" />
+            </div>
+        </form>
+        <br />
+        {% if result is not none %}
+        <p>เกรดเฉลี่ยสะสมคือ : {{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+```
+
+## Run the Flask Application
+```shell
+python app.py
 ```
 
 ![01](/01.png)
 
-## 3) Exploratory Data Analysis : EDA
-```py
-# การเตรียมข้อมูล ที่ข้อมูลจะต้องเป็นตัวเลข
-all_features = [name for name in studentdata.columns if studentdata[name].dtype == 'object']
-all_features
-```
-
-```shell
-['Province']
-```
-
-### 3.1) Convert an Object to Int
-```py
-# การแปลงข้อมูลจังหวัด (Province) ให้เป็นตัวเลข
-all_features = [name for name in studentdata.columns if studentdata[name].dtype == 'object']
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-for i in list(all_features):
-    studentdata[i] = le.fit_transform(studentdata[i])
-
-for x in all_features:
-    print(x, "=", studentdata[x].unique())
-```
-
-```shell
-Province = [2 5 1 7 6 4 0 3 8]
-```
-
-<br>
-```py
-# การแสดงข้อมูลจังหวัดที่ถูกแปลงเป็นตัวเลข
-studentdata.head(10)
-```
+##  Testing the Application
+1. Open a web browser and go to `http://localhost:5000`.
+2. Enter a math score in the input field and submit.
+3. The predicted GPA will be displayed below the form.
 
 ![02](/02.png)
-
-### 3.2) Feature Selection with Chi-Square
-```py
-# การเลือกคุณลักษณะ (Feature Selection) ที่สัมพันธ์กับผลลัพธ์ (Result)
-from sklearn.feature_selection import chi2
-studentdata.fillna(0, inplace=True)
-X = studentdata.drop('Result', axis=1)
-y = studentdata['Result']
-chi_scores = chi2(X, y)
-
-# การคัดเรียงลำดับความสำคัญของคุณลักษณะจากน้อยไปหามาก
-p_values = pd.Series(chi_scores[1], index=X.columns)
-p_values.sort_values(ascending=True, inplace=True)
-p_values
-```
-
-![03](/03.png)
-
-<br>
-
-```py
-# การสร้างกราฟแสดงคุณลักษณะจากน้อยไปหามาก
-p_values.plot.bar(figsize=(10,5), cmap="coolwarm")
-plt.title('Chi-square test for feature selection', size=18)
-```
-
-```shell
-Text(0.5, 1.0, 'Chi-square test for feature selection')
-```
-
-![04](/04.png)
-
-### 3.3) Remove Some Attributes After Ffeature Selection
-
-```py
-# การลบคุณลักษณะที่ไม่สำคัญออกไปจากชุดข้อมูล
-newfeature = studentdata.columns.tolist()
-newfeature.remove('Province')
-newfeature.remove('Gender')
-newfeature.remove('EnglishProficiencyCertificate')
-newfeature
-```
-
-```shell
-['BSc', 'CGPA', 'Experience', 'Thesis/IS', 'Result']
-```
-
-## 4) Split Training and Testing Data Set (80:20)
-```python
-# การแบ่งชุดข้อมูลสำหรับการเรียนออกเป็น 80:20
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
-```
-
-## 5) Creating a Decision Tree Model
-```py
-# การสร้างแบบจำลองต้นไม้ตัดสินใจ (Decision Tree)
-modelDT = DecisionTreeClassifier(random_state=43)
-
-# การฝึกสอนข้อมูล
-modelDT.fit(X_train, y_train)
-
-# การทำนายข้อมูล
-predictions = modelDT.predict(X_test)
-```
-
-## 6) Evaluation Model (Confusion Matrix)
-```py
-# การสร้างคอนฟังชันเมทริกซ์ เพื่อแสดงความถูกต้อง แม่นยำ และความครอบคลุมของแบบจำลอง
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-
-print(confusion_matrix(y_test, predictions))
-print(classification_report(y_test, predictions))
-print(accuracy_score(y_test, predictions))
-```
-
-```shell
-[[10 12]
- [14 14]]
-              precision    recall  f1-score   support
-
-           0       0.42      0.45      0.43        22
-           1       0.54      0.50      0.52        28
-
-    accuracy                           0.48        50
-   macro avg       0.48      0.48      0.48        50
-weighted avg       0.48      0.48      0.48        50
-
-0.48
-```
-
-## 7) Visualizing Decision Tree
-
-```py
-# การสร้างภาพต้นไม้ตัดสินใจ
-from sklearn.tree import export_graphviz
-from sklearn import tree
-import graphviz
-
-cols = list(X_train.columns.values)
-dot_data = tree.export_graphviz(modelDT, out_file=None, feature_names=cols)
-
-graph = graphviz.Source(dot_data, format="png")
-graph
-
-plt.savefig('DTree.png')
-
-graph.render("DTree_graphviz")
-```
-
-```shell
-DTree_graphviz.png
-<Figure size 640x480 with 0 Axes>
-```
-
-## 8) Testing the Predictive Model with Unseen Data
-
-```py
-# การสร้างการทดสอบข้อมูลใหม่
-studentdata1 = pd.read_csv('/content/sample_data/student_data_sample.csv')
-studentdata1.head(5)
-```
-
-![05](/05.png)
-
-## 9) Saving Prediction Result to Exel (Display_ResultDT.csv)
-```py
-# การทำนายชุดข้อมูลใหม่
-test_predict = modelDT.predict(X=studentdata1)
-
-# Create a submission for Kaggle
-submission = pd.DataFrame({"Result": test_predict})
-
-# Save submission to CSV
-submission.to_csv("DTreeResult.csv", index=False)
-```
 
 ---
