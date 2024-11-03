@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>การทำนายเกรดของเครื่องประมวลผลวิชาคณิตศาสตร์</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #8bc0f5;
+        }
+        .div2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 30px;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="div2">
+        <h3>การทำนายคะแนนวิชาคณิตศาสตร์ตามแบบทดสอบผลคะแนนสุดท้าย</h3> <br><br>
+        <form action="/" method="POST">
+            <label for="math">กรุณากรอกผลคะแนนคณิตศาสตร์:</label>
+            <input type="text" id="math" name="math" required><br><br>
+            <div class="center">
+                <input type="submit" value="ทำนายผล" />
+            </div>
+        </form>
+        <br />
+        {% if result is not none %}
+        <p>เกรดเฉลี่ยสะสมคือ : {{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

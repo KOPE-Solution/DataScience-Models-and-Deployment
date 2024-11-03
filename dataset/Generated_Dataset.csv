@@ -1,0 +1,251 @@
+BSc,Gender,CGPA,Experience,Province,EnglishProficiencyCertificate,Thesis/IS,Result
+0,1,2.4,1,Chiang Mai,0,0,1
+0,1,3.2,4,Nakhon Ratchasima,0,1,0
+1,1,3.1,5,Bangkok,1,0,1
+1,0,2.1,2,Saraburi,0,0,1
+1,0,3.1,3,Saraburi,0,0,0
+1,1,3.4,2,Chiang Mai,1,1,1
+1,0,2.9,3,Phuket,1,0,1
+1,0,3.4,4,Kanchanaburi,1,0,1
+1,1,3.7,4,Phuket,0,1,1
+0,1,2.6,5,Ayutthaya,1,0,1
+1,0,2.8,3,Bangkok,0,0,1
+1,1,3.0,4,Nakhon Ratchasima,0,1,0
+1,1,3.9,3,Ayutthaya,0,0,1
+1,0,3.1,4,Kanchanaburi,1,1,0
+1,0,3.8,1,Nakhon Ratchasima,0,0,1
+0,1,3.4,3,Saraburi,0,0,1
+1,1,3.3,5,Phuket,0,1,0
+1,1,3.6,1,Saraburi,1,1,0
+0,0,3.3,2,Chiang Mai,0,0,0
+0,0,2.4,2,Phuket,1,1,1
+0,0,2.2,2,Nakhon Ratchasima,1,0,1
+1,0,2.5,1,Chonburi,1,0,1
+0,0,3.3,4,Kanchanaburi,1,1,0
+0,0,3.8,5,Chiang Mai,1,1,1
+0,1,2.8,3,Kanchanaburi,0,0,1
+0,0,3.0,5,Nakhon Ratchasima,1,0,1
+0,0,2.8,3,Chiang Mai,1,0,1
+0,1,2.6,1,Nakhon Ratchasima,0,1,1
+0,0,3.7,1,Tak,1,0,0
+0,0,2.1,1,Kanchanaburi,0,0,0
+1,1,2.2,3,Phuket,1,0,0
+1,0,2.8,4,Chiang Mai,0,0,1
+1,1,3.2,2,Bangkok,0,0,1
+0,1,3.2,5,Nakhon Ratchasima,0,1,0
+1,0,3.8,5,Chonburi,0,1,1
+1,1,3.6,1,Tak,1,1,1
+1,0,3.2,3,Kanchanaburi,0,0,1
+0,1,3.7,5,Bangkok,1,1,1
+0,0,3.4,5,Chiang Mai,0,1,1
+0,0,3.1,2,Ayutthaya,1,0,0
+0,0,2.8,2,Kanchanaburi,0,1,1
+0,0,3.4,1,Chiang Mai,0,1,0
+1,0,3.5,5,Tak,0,1,1
+1,1,2.4,5,Chonburi,1,0,0
+1,0,3.9,1,Phuket,1,0,0
+0,1,2.8,5,Bangkok,0,1,0
+1,0,2.8,3,Kanchanaburi,1,0,0
+1,1,2.1,5,Phuket,1,1,1
+0,0,2.0,1,Ayutthaya,0,0,0
+1,1,3.4,3,Bangkok,0,1,0
+0,0,2.8,5,Chonburi,1,1,0
+0,0,3.8,5,Saraburi,0,1,0
+0,1,2.5,1,Nakhon Ratchasima,1,1,1
+0,1,2.2,3,Chiang Mai,0,1,1
+0,0,3.8,5,Chiang Mai,0,1,0
+0,1,2.6,5,Phuket,1,1,0
+0,0,4.0,5,Tak,0,0,1
+1,1,2.1,2,Nakhon Ratchasima,1,1,0
+0,0,2.7,4,Tak,0,1,1
+1,0,2.5,3,Phuket,1,1,0
+0,1,3.2,2,Kanchanaburi,1,1,0
+1,0,3.8,1,Saraburi,0,1,0
+1,1,3.5,1,Ayutthaya,1,0,0
+0,1,2.3,4,Saraburi,1,0,1
+0,1,4.0,4,Saraburi,1,0,0
+0,0,2.7,5,Saraburi,0,1,0
+1,1,2.4,5,Bangkok,1,0,0
+1,1,2.4,5,Phuket,1,0,0
+0,0,3.0,1,Nakhon Ratchasima,1,0,0
+1,0,3.8,4,Kanchanaburi,1,1,0
+1,1,3.4,3,Bangkok,0,1,1
+0,0,3.6,1,Saraburi,1,1,1
+1,1,2.3,5,Saraburi,0,1,0
+0,0,2.8,1,Nakhon Ratchasima,0,1,0
+0,1,3.3,4,Chonburi,0,0,1
+0,1,3.9,4,Chonburi,1,1,1
+1,1,4.0,3,Chiang Mai,0,0,1
+1,0,3.0,3,Ayutthaya,0,1,0
+0,0,3.0,5,Bangkok,0,1,1
+0,1,2.2,5,Tak,0,1,1
+1,1,3.7,1,Chiang Mai,1,0,1
+1,1,3.2,5,Phuket,0,1,0
+0,1,3.8,4,Kanchanaburi,1,0,1
+1,0,3.9,3,Phuket,0,0,1
+0,1,2.5,2,Kanchanaburi,0,1,1
+0,1,3.7,1,Bangkok,0,1,0
+0,0,2.7,4,Ayutthaya,0,0,0
+1,1,3.3,4,Kanchanaburi,0,0,1
+0,1,3.3,3,Nakhon Ratchasima,0,0,0
+0,1,2.9,4,Chonburi,1,1,1
+1,1,3.2,2,Chiang Mai,1,0,1
+1,0,3.8,3,Chiang Mai,0,0,0
+0,0,3.7,1,Phuket,1,0,1
+1,0,2.3,3,Ayutthaya,1,1,1
+1,0,3.3,5,Chiang Mai,1,1,1
+1,1,3.9,2,Saraburi,0,0,1
+0,0,3.5,2,Chonburi,1,0,1
+1,1,2.8,4,Saraburi,1,1,1
+0,1,3.3,5,Phuket,1,0,1
+1,0,3.5,3,Saraburi,0,0,1
+0,0,2.8,3,Phuket,0,0,1
+1,1,3.7,2,Nakhon Ratchasima,1,0,0
+0,0,3.9,2,Saraburi,1,1,1
+1,1,3.6,4,Kanchanaburi,1,1,1
+1,0,3.3,4,Phuket,0,0,0
+0,1,2.6,2,Nakhon Ratchasima,1,1,0
+0,0,3.6,4,Phuket,1,0,1
+0,0,2.9,1,Kanchanaburi,1,1,1
+0,1,2.1,3,Phuket,0,0,1
+1,0,2.9,4,Chiang Mai,1,1,1
+1,1,4.0,4,Tak,0,0,0
+1,0,3.8,4,Chonburi,1,1,0
+1,1,2.3,4,Kanchanaburi,1,1,1
+1,0,3.3,2,Kanchanaburi,0,1,1
+0,0,3.3,1,Tak,0,0,0
+1,1,2.4,5,Chiang Mai,1,0,1
+0,0,3.7,4,Chiang Mai,0,0,1
+0,0,2.7,5,Chiang Mai,1,1,1
+0,0,3.0,3,Tak,1,0,1
+1,1,3.8,3,Ayutthaya,0,0,1
+0,0,4.0,4,Kanchanaburi,0,1,0
+0,0,3.6,2,Bangkok,0,1,0
+1,1,3.1,3,Phuket,1,1,1
+1,1,2.2,3,Kanchanaburi,0,0,1
+0,1,3.6,4,Saraburi,0,1,1
+1,1,2.8,5,Kanchanaburi,1,0,0
+0,0,3.1,3,Kanchanaburi,0,1,0
+1,1,2.3,2,Bangkok,0,0,1
+0,1,2.3,2,Phuket,1,1,0
+1,1,3.1,2,Kanchanaburi,0,1,1
+1,1,3.3,3,Chiang Mai,1,0,0
+0,1,2.3,1,Saraburi,1,1,0
+0,0,2.2,5,Saraburi,1,0,1
+1,1,3.3,2,Kanchanaburi,0,0,0
+1,1,3.8,5,Chonburi,1,0,1
+0,0,2.7,4,Nakhon Ratchasima,0,0,0
+1,0,2.4,5,Bangkok,1,0,1
+0,0,2.5,5,Nakhon Ratchasima,0,1,1
+1,1,3.0,4,Kanchanaburi,0,0,0
+1,0,3.4,2,Bangkok,1,1,0
+0,0,2.8,5,Kanchanaburi,1,0,0
+0,1,3.2,3,Bangkok,1,0,0
+1,0,2.6,2,Ayutthaya,1,0,1
+1,0,3.9,5,Chonburi,0,1,0
+0,1,2.6,3,Chiang Mai,1,1,1
+1,0,2.3,2,Tak,1,1,0
+1,1,3.6,5,Saraburi,0,0,1
+1,1,2.9,2,Ayutthaya,1,1,1
+1,1,2.7,2,Ayutthaya,0,1,1
+1,1,2.7,3,Chiang Mai,1,1,0
+1,0,3.0,5,Chiang Mai,1,0,0
+0,1,2.0,1,Saraburi,0,1,1
+0,1,2.7,4,Kanchanaburi,1,1,1
+1,0,2.2,2,Saraburi,0,0,0
+1,0,2.7,1,Chiang Mai,0,1,1
+1,1,2.3,3,Phuket,0,0,0
+1,1,2.2,5,Bangkok,1,0,0
+1,0,3.8,4,Saraburi,0,0,1
+1,1,3.4,1,Ayutthaya,1,0,0
+1,1,2.4,4,Ayutthaya,0,1,1
+1,0,2.7,3,Kanchanaburi,0,0,1
+1,0,3.5,1,Chonburi,1,1,0
+1,0,2.3,3,Chonburi,1,1,0
+1,0,3.2,5,Phuket,0,0,0
+0,0,3.4,3,Phuket,1,0,1
+0,0,3.1,3,Kanchanaburi,1,0,0
+0,0,2.6,1,Kanchanaburi,0,1,0
+1,1,2.4,3,Tak,1,1,0
+0,0,2.3,3,Nakhon Ratchasima,0,0,0
+1,1,2.4,2,Phuket,1,1,0
+1,1,2.5,1,Kanchanaburi,0,1,1
+1,1,2.5,2,Kanchanaburi,0,0,0
+1,1,3.0,2,Nakhon Ratchasima,0,0,1
+0,1,2.7,5,Ayutthaya,1,0,1
+0,1,3.2,3,Saraburi,1,1,0
+1,0,3.1,3,Saraburi,0,1,0
+1,0,2.7,1,Phuket,0,1,1
+1,0,2.2,4,Tak,0,0,1
+1,1,3.5,5,Chiang Mai,0,1,0
+0,0,3.0,4,Tak,0,0,1
+0,0,2.2,3,Saraburi,1,1,1
+0,1,2.2,4,Chiang Mai,1,0,1
+0,1,2.4,5,Chonburi,1,0,1
+0,1,3.7,1,Phuket,1,1,1
+0,0,3.6,5,Bangkok,1,1,1
+0,0,2.8,2,Kanchanaburi,0,1,1
+1,1,3.7,2,Kanchanaburi,0,0,1
+0,0,2.5,2,Chiang Mai,0,1,1
+1,1,3.7,5,Saraburi,1,1,0
+1,1,3.8,3,Kanchanaburi,0,1,1
+0,0,2.8,3,Phuket,1,0,0
+0,1,3.6,4,Chiang Mai,0,0,1
+0,1,3.9,5,Phuket,0,1,0
+1,0,2.5,3,Tak,1,1,0
+0,0,3.0,2,Phuket,0,0,1
+0,0,3.7,5,Tak,1,1,1
+1,0,2.4,5,Chiang Mai,1,1,1
+1,0,3.2,3,Phuket,1,0,0
+0,1,2.1,2,Kanchanaburi,0,0,0
+0,1,3.4,3,Tak,1,0,0
+1,0,3.7,5,Saraburi,0,0,0
+0,1,4.0,3,Saraburi,1,0,0
+0,0,2.0,3,Kanchanaburi,1,1,0
+1,1,2.3,2,Kanchanaburi,0,0,1
+1,0,3.3,1,Chiang Mai,1,1,1
+1,1,4.0,5,Bangkok,0,1,1
+0,0,3.0,1,Chiang Mai,1,0,0
+0,0,2.6,5,Ayutthaya,1,1,0
+0,0,2.2,2,Chiang Mai,1,0,0
+1,0,3.3,5,Bangkok,1,1,0
+1,0,3.2,2,Ayutthaya,0,1,0
+1,1,3.2,1,Kanchanaburi,0,1,0
+1,0,2.3,5,Tak,0,0,1
+0,0,3.9,3,Ayutthaya,0,1,0
+0,1,3.6,5,Ayutthaya,0,0,1
+1,0,2.4,4,Bangkok,0,1,0
+0,1,3.4,3,Chonburi,1,1,1
+0,1,3.1,1,Ayutthaya,0,1,0
+1,1,2.2,4,Ayutthaya,0,0,0
+0,1,2.9,2,Kanchanaburi,1,1,0
+0,0,2.1,3,Bangkok,0,0,1
+1,0,2.9,2,Saraburi,1,0,0
+0,1,2.4,1,Chonburi,0,1,1
+0,0,3.4,2,Phuket,0,0,0
+1,0,2.3,2,Saraburi,0,1,1
+0,1,3.6,4,Tak,0,0,1
+0,1,4.0,2,Nakhon Ratchasima,0,1,1
+0,0,3.8,5,Chonburi,1,1,0
+0,1,2.7,4,Tak,1,0,0
+0,0,2.9,4,Nakhon Ratchasima,1,0,0
+1,0,2.2,1,Bangkok,0,0,1
+1,1,3.5,5,Chiang Mai,0,1,1
+1,0,2.7,4,Chiang Mai,0,1,0
+0,1,2.3,2,Saraburi,0,0,0
+0,0,3.4,3,Tak,1,1,0
+1,0,2.5,4,Nakhon Ratchasima,0,1,1
+0,0,3.6,1,Chiang Mai,0,1,0
+1,1,3.2,1,Tak,0,1,0
+0,1,2.8,1,Chonburi,1,0,0
+0,1,3.4,2,Phuket,0,0,1
+1,0,3.9,1,Nakhon Ratchasima,0,1,0
+0,0,2.3,2,Tak,1,0,0
+1,0,3.7,5,Phuket,1,1,0
+1,0,3.4,1,Chiang Mai,1,1,0
+1,1,3.7,2,Bangkok,1,0,1
+1,1,3.3,3,Phuket,1,0,0
+0,0,3.4,5,Saraburi,0,1,0
+0,0,2.6,5,Chiang Mai,1,1,1
+0,1,3.6,2,Saraburi,1,1,0
+0,0,2.4,3,Ayutthaya,1,1,1
