@@ -1,144 +1,65 @@
-# DataScience-Models-and-Deployment : Chapter-3 Deploying Machine Learning Models with FLASK Web Development
+# DataScience-Models-and-Deployment : Chapter-4 Speech-to-Text for converting speech into text
 
-## Create a model file (model.sav)
+## 1) Installig Python SpeechRecognition [ref](https://pypi.org/project/SpeechRecognition/)
+```shell
+pip install SpeechRecognition
+```
+
+## 2) Import Library
 ```py
-import sklearn # pip install scikit-learn
-from sklearn.linear_model import LinearRegression
-import joblib
-import pandas as pd
-
-# การอ่านไฟล์ .csv
-dataset = pd.read_csv('/content/sample_data/gradingsystem_training.csv')
-x = dataset.iloc[:, 2].values.reshape(-1, 1)  # ค่าเกรดเฉลี่ยสะสม
-y = dataset.iloc[:, 3].values.reshape(-1, 1)  # ค่าเกรดเฉลี่ยเทอม
-
-# การแบ่งข้อมูล
-from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.7, test_size=0.3, random_state=0)
-
-# การสร้างแบบจำลองการถดถอยเชิงเส้นอย่างง่าย
-regression_model = LinearRegression()
-regression_model.fit(x_train, y_train)
-
-# บันทึกแบบจำลองที่สร้างแล้ว เก็บไว้ในไฟล์ model.sav
-filename = "model.sav"
-joblib.dump(regression_model, filename)
-newmodel = joblib.load(filename)
-newmodel.predict([[30]])
+import speech_recognition as sr
 ```
 
-```shell
-array([[2.88205188]])
-```
-
-## Directory Structure
-```shell
-your_project_folder/
-│
-├── app.py                   # Flask application
-├── model.sav                # Serialized model file
-└── templates/
-    └── index.html           # HTML template for the form
-```
-
-## Flask Application Code (app.py)
+## 3) Listen to the Audio File
 ```py
-from flask import Flask, request, render_template
-import joblib
-
-# Load the trained model
-model = joblib.load("model.sav")
-
-# Initialize the Flask app
-app = Flask(__name__)
-
-# Define the home route to render the HTML form
-@app.route('/')
-def home():
-    return render_template("index.html")
-
-# Define the prediction route to process form input and return a result
-@app.route('/', methods=['POST'])
-def predict():
-    try:
-        # Get the input value from the form
-        math_score = float(request.form['math'])
-        
-        # Predict using the loaded model
-        prediction = model.predict([[math_score]])
-        
-        # Extract the result (assuming it's a 2D array)
-        result = round(prediction[0][0], 2)
-        
-        # Render the result in the template
-        return render_template("index.html", result=result)
-    
-    except Exception as e:
-        # In case of an error, return a message
-        return f"Error occurred: {e}"
-
-# Run the app
-if __name__ == '__main__':
-    app.run(debug=True)
+import IPython.display as ipd
+ipd.Audio('/content/sample_data/harvard.wav')
 ```
 
-## HTML Template (templates/index.html)
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>การทำนายเกรดของเครื่องประมวลผลวิชาคณิตศาสตร์</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            background-color: #8bc0f5;
-        }
-        .div2 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            padding: 30px;
-            transform: translate(-50%, -50%);
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-    <div class="div2">
-        <h3>การทำนายคะแนนวิชาคณิตศาสตร์ตามแบบทดสอบผลคะแนนสุดท้าย</h3> <br><br>
-        <form action="/" method="POST">
-            <label for="math">กรุณากรอกผลคะแนนคณิตศาสตร์:</label>
-            <input type="text" id="math" name="math" required><br><br>
-            <div class="center">
-                <input type="submit" value="ทำนายผล" />
-            </div>
-        </form>
-        <br />
-        {% if result is not none %}
-        <p>เกรดเฉลี่ยสะสมคือ : {{ result }}</p>
-        {% endif %}
-    </div>
-</body>
-</html>
-```
+## 4) Plotting a Waveform
+```py
+import matplotlib.pyplot as plt
+import librosa.display
 
-## Run the Flask Application
-```shell
-python app.py
+x, sr = librosa.load('/content/sample_data/harvard.wav')
+plt.figure(figsize=(14, 5))
+librosa.display.waveshow(x, sr=sr)
+plt.xlabel("Time (s)")
+plt.ylabel("Amplitude")
+plt.title("Waveform")
+plt.show()
 ```
 
 ![01](/01.png)
 
-##  Testing the Application
-1. Open a web browser and go to `http://localhost:5000`.
-2. Enter a math score in the input field and submit.
-3. The predicted GPA will be displayed below the form.
+## 5) Convert Voice Recordings to Text
 
-![02](/02.png)
+```py
+import speech_recognition as sr
+
+s2t = sr.Recognizer()
+text = ""
+
+with sr.AudioFile('/content/sample_data/harvard.wav') as source:
+    audio_length = int(source.DURATION)  # Get the duration of the audio in seconds
+    for start in range(0, audio_length, 30):  # Process in 30-second chunks
+        source_offset = start
+        source_duration = min(30, audio_length - start)
+        
+        sound2text = s2t.record(source, offset=source_offset, duration=source_duration)
+        
+        try:
+            text += s2t.recognize_google(sound2text) + " "
+        except sr.UnknownValueError:
+            print("Could not understand audio in this section")
+        except sr.RequestError:
+            print("Could not request results from Google Speech Recognition service")
+
+print(text)
+```
+
+```shell
+the stale smell of old beer lingers it takes heat to bring out the odor a cold dip restores health and zest a salt pickle taste fine with ham tacos al pastor are my favorite a zestful food is the hot cross bun
+```
 
 ---
